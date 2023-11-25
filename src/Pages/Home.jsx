@@ -1,6 +1,17 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getProduct } from '../Store/ActionCreators/ProductActioncreator'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
+	let dispatch = useDispatch()
+	let product = useSelector((state) => state.ProductStateData)
+	product.reverse()
+	product = product.slice(0, 7)
+	// console.log("product",product[1].name)
+	useEffect(() => {
+		dispatch(getProduct())
+	},[])
   return (
     <>
       <div className="hero">
@@ -10,13 +21,13 @@ export default function Home() {
 							<div className="intro-excerpt">
 								<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
 								<p className="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-								<p><a href="" className="btn btn-secondary me-2">Shop Now</a><a href="#" className="btn btn-white-outline">Explore</a></p>
+								<p><Link to="/shop" className="btn btn-secondary me-2">Shop Now</Link><Link href="#" className="btn btn-white-outline">Explore</Link></p>
 							</div>
 						</div>
 						<div className="col-lg-7">
-							<div className="hero-img-wrap">
-								<img src="./public/assets/images/couch.png" className="img-fluid"/>
-							</div>
+							  <img src="./public/assets/images/bg_1.png" className="img-fluid" />
+							{/* <div className="hero-img-wrap ">
+							</div> */}
 						</div>
 					</div>
 				</div>
@@ -29,44 +40,38 @@ export default function Home() {
 					<div className="col-md-12 col-lg-3 mb-5 mb-lg-0">
 						<h2 className="mb-4 section-title">Crafted with excellent material.</h2>
 						<p className="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
-						<p><a href="shop.html" className="btn">Explore</a></p>
+						<p><Link to="/shop" className="btn">Explore</Link></p>
 					</div> 
-
-					<div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a className="product-item" href="cart.html">
-							<img src="./public/assets/images/product-1.png" className="img-fluid product-thumbnail"/>
-							<h3 className="product-title">Nordic Chair</h3>
-							<strong className="product-price">$50.00</strong>
+					
+						  {product.map((item, index) => {
+							  return (
+								  
+								  <div key={index} className="col-12 col-md-4 col-lg-3 mb-5 mb-md-2">
+									  <div className="card" >
+  <img src={`./assets/productimages/${item.pic1}`} className="card-img-top img-fluid product-thumbnail" style={{height:"226px"}}/>
+  <div className="card-body">
+											  <h6 className="card-title">{item.name}</h6>
+											  <div className="position-relative w-100">
+												  <div className="w-50"><span className='card-item w-30'>{item.color} </span></div>
+												  <div className=" position-absolute top-0 end-0"><sub><strike>&#8377;{item.baseprice}</strike></sub> <b>&#8377;{item.finalprice}</b></div>
+												  </div>
+    <Link to="/cart" className="btn btn-primary mt-2 w-100">add to cart</Link>
+  </div>
+</div>
+								{/* <Link className="product-item" to="/cart">
+									  <img src={`./assets/productimages/${item.pic1}`} className="img-fluid product-thumbnail" height={"200px"} width={"200px"}/>
+									  <h3 className="product-title">{ item.name}</h3>
+									  <strong className="product-price">&#8377;{ item.finalprice}</strong>
 
 							<span className="icon-cross">
 								<img src="./public/assets/images/cross.svg" className="img-fluid"/>
 							</span>
-						</a>
+						</Link> */}
 					</div> 
+							)
+						})}
 
-					<div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a className="product-item" href="cart.html">
-							<img src="./public/assets/images/product-2.png" className="img-fluid product-thumbnail"/>
-							<h3 className="product-title">Kruzo Aero Chair</h3>
-							<strong className="product-price">$78.00</strong>
-
-							<span className="icon-cross">
-								<img src="./public/assets/images/cross.svg" className="img-fluid"/>
-							</span>
-						</a>
-					</div>
-
-					<div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a className="product-item" href="cart.html">
-							<img src="./public/assets/images/product-3.png" className="img-fluid product-thumbnail"/>
-							<h3 className="product-title">Ergonomic Chair</h3>
-							<strong className="product-price">$43.00</strong>
-
-							<span className="icon-cross">
-								<img src="./public/assets/images/cross.svg" className="img-fluid"/>
-							</span>
-						</a>
-					</div>
+					
 
 				</div>
 			</div>
@@ -125,7 +130,7 @@ export default function Home() {
 
 					<div className="col-lg-5">
 						<div className="img-wrap">
-							<img src="./public/assets/images/why-choose-us-img.jpg" alt="Image" className="img-fluid"/>
+							<img src="./public/assets/images/image_3.jpg" alt="Image" className="img-fluid"/>
 						</div>
 					</div>
 
@@ -138,9 +143,9 @@ export default function Home() {
 				<div className="row justify-content-between">
 					<div className="col-lg-7 mb-5 mb-lg-0">
 						<div className="imgs-grid">
-							<div className="grid grid-1"><img src="./public/assets/images/img-grid-1.jpg" alt="Untree.co"/></div>
-							<div className="grid grid-2"><img src="./public/assets/images/img-grid-2.jpg" alt="Untree.co"/></div>
-							<div className="grid grid-3"><img src="./public/assets/images/img-grid-3.jpg" alt="Untree.co"/></div>
+							<div className="grid grid-1"><img src="./public/assets/images/image_1.jpg" alt="Untree.co"/></div>
+							<div className="grid grid-2"><img src="./public/assets/images/image_2.jpg" alt="Untree.co"/></div>
+							<div className="grid grid-3"><img src="./public/assets/images/image_6.jpg" alt="Untree.co"/></div>
 						</div>
 					</div>
 					<div className="col-lg-5 ps-lg-5">
@@ -153,13 +158,13 @@ export default function Home() {
 							<li>Donec vitae odio quis nisl dapibus malesuada</li>
 							<li>Donec vitae odio quis nisl dapibus malesuada</li>
 						</ul>
-						<p><a herf="#" className="btn">Explore</a></p>
+						<p><Link herf="#" className="btn">Explore</Link></p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div className="popular-product">
+		{/* <div className="popular-product">
 			<div className="container">
 				<div className="row">
 
@@ -171,7 +176,7 @@ export default function Home() {
 							<div className="pt-3">
 								<h3>Nordic Chair</h3>
 								<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-								<p><a href="#">Read More</a></p>
+								<p><Link href="#">Read More</Link></p>
 							</div>
 						</div>
 					</div>
@@ -184,7 +189,7 @@ export default function Home() {
 							<div className="pt-3">
 								<h3>Kruzo Aero Chair</h3>
 								<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-								<p><a href="#">Read More</a></p>
+								<p><Link href="#">Read More</Link></p>
 							</div>
 						</div>
 					</div>
@@ -197,14 +202,14 @@ export default function Home() {
 							<div className="pt-3">
 								<h3>Ergonomic Chair</h3>
 								<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-								<p><a href="#">Read More</a></p>
+								<p><Link href="#">Read More</Link></p>
 							</div>
 						</div>
 					</div>
 
 				</div>
 			</div>
-		</div>
+		</div> */}
 
 		<div className="testimonial-section">
 			<div className="container">
@@ -214,15 +219,10 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="row justify-content-center">
-					<div className="col-lg-12">
-						<div className="carousel slide text-center">
-
-						
-
-							<div className=" carousel-inner">
-								
-								<div className=" carousel-item">
+				<div id="carouselExample" className=" testimonial-slider-wrap carousel slide mt-5">
+  <div className="carousel-inner">
+  <div className="carousel-item active">
+  <div className="item">
 									<div className="row justify-content-center">
 										<div className="col-lg-8 mx-auto">
 
@@ -233,7 +233,7 @@ export default function Home() {
 
 												<div className="author-info">
 													<div className="author-pic">
-														<img src="./public/assets/images/person-1.png" alt="Maria Jones" className="img-fluid"/>
+														<img src="./assets/images/person-1.png" alt="Maria Jones" className="img-fluid"/>
 													</div>
 													<h3 className="font-weight-bold">Maria Jones</h3>
 													<span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -243,8 +243,9 @@ export default function Home() {
 										</div>
 									</div>
 								</div> 
-
-								<div className="item carousel-item">
+    </div>
+    <div className="carousel-item">
+	<div className="item">
 									<div className="row justify-content-center">
 										<div className="col-lg-8 mx-auto">
 
@@ -255,7 +256,7 @@ export default function Home() {
 
 												<div className="author-info">
 													<div className="author-pic">
-														<img src="./public/assets/images/person-1.png" alt="Maria Jones" className="img-fluid"/>
+														<img src="./assets/images/person-1.png" alt="Maria Jones" className="img-fluid"/>
 													</div>
 													<h3 className="font-weight-bold">Maria Jones</h3>
 													<span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -265,8 +266,9 @@ export default function Home() {
 										</div>
 									</div>
 								</div> 
-
-								<div className="item carousel-item">
+    </div>
+    <div className="carousel-item">
+	<div className="item">
 									<div className="row justify-content-center">
 										<div className="col-lg-8 mx-auto">
 
@@ -277,7 +279,7 @@ export default function Home() {
 
 												<div className="author-info">
 													<div className="author-pic">
-														<img src="./public/assets/images/person-1.png" alt="Maria Jones" className="img-fluid"/>
+														<img src="./assets/images/person-1.png" alt="Maria Jones" className="img-fluid"/>
 													</div>
 													<h3 className="font-weight-bold">Maria Jones</h3>
 													<span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -286,21 +288,18 @@ export default function Home() {
 
 										</div>
 									</div>
-								</div> 
-
-							  </div>
-							  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+								</div>
+    </div>
+  </div>
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
+  <button className="carousel-control-next " type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span className="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
   </button>
-
-						</div>
-					</div>
-				</div>
+</div>
 			</div>
 		</div>
 
@@ -311,7 +310,7 @@ export default function Home() {
 						<h2 className="section-title">Recent Blog</h2>
 					</div>
 					<div className="col-md-6 text-start text-md-end">
-						<a href="#" className="more">View All Posts</a>
+						<Link href="#" className="more">View All Posts</Link>
 					</div>
 				</div>
 
@@ -319,11 +318,11 @@ export default function Home() {
 
 					<div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
 						<div className="post-entry">
-							<a href="#" className="post-thumbnail"><img src="./public/assets/images/post-1.jpg" alt="Image" className="img-fluid"/></a>
+							<Link href="#" className="post-thumbnail"><img src="./public/assets/images/post-1.jpg" alt="Image" className="img-fluid"/></Link>
 							<div className="post-content-entry">
-								<h3><a href="#">First Time Home Owner Ideas</a></h3>
+								<h3><Link href="#">First Time Home Owner Ideas</Link></h3>
 								<div className="meta">
-									<span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
+									<span>by <Link href="#">Kristin Watson</Link></span> <span>on <Link href="#">Dec 19, 2021</Link></span>
 								</div>
 							</div>
 						</div>
@@ -331,11 +330,11 @@ export default function Home() {
 
 					<div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
 						<div className="post-entry">
-							<a href="#" className="post-thumbnail"><img src="./public/assets/images/post-2.jpg" alt="Image" className="img-fluid"/></a>
+							<Link href="#" className="post-thumbnail"><img src="./public/assets/images/post-2.jpg" alt="Image" className="img-fluid"/></Link>
 							<div className="post-content-entry">
-								<h3><a href="#">How To Keep Your Furniture Clean</a></h3>
+								<h3><Link href="#">How To Keep Your Furniture Clean</Link></h3>
 								<div className="meta">
-									<span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
+									<span>by <Link href="#">Robert Fox</Link></span> <span>on <Link href="#">Dec 15, 2021</Link></span>
 								</div>
 							</div>
 						</div>
@@ -343,11 +342,11 @@ export default function Home() {
 
 					<div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
 						<div className="post-entry">
-							<a href="#" className="post-thumbnail"><img src="./public/assets/images/post-3.jpg" alt="Image" className="img-fluid"/></a>
+							<Link href="#" className="post-thumbnail"><img src="./public/assets/images/post-3.jpg" alt="Image" className="img-fluid"/></Link>
 							<div className="post-content-entry">
-								<h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
+								<h3><Link href="#">Small Space Furniture Apartment Ideas</Link></h3>
 								<div className="meta">
-									<span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
+									<span>by <Link href="#">Kristin Watson</Link></span> <span>on <Link href="#">Dec 12, 2021</Link></span>
 								</div>
 							</div>
 						</div>

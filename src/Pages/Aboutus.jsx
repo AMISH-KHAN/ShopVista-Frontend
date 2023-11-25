@@ -13,11 +13,11 @@ export default function Aboutus() {
 								<p><a href="" className="btn btn-secondary me-2">Shop Now</a><a href="#" className="btn btn-white-outline">Explore</a></p>
 							</div>
 						</div>
-						<div className="col-lg-7">
+						{/* <div className="col-lg-7">
 							<div className="hero-img-wrap">
-								<img src="./public/assets/images/couch.png" className="img-fluid"/>
+							<img src="./public/assets/images/bg_1.png" className="img-fluid" />
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
@@ -77,7 +77,7 @@ export default function Aboutus() {
 
 					<div className="col-lg-5">
 						<div className="img-wrap">
-							<img src="./public/assets/images/why-choose-us-img.jpg" alt="Image" className="img-fluid"/>
+							<img src="assets/images/image_6.jpg" alt="Image" className="img-fluid"/>
 						</div>
 					</div>
 

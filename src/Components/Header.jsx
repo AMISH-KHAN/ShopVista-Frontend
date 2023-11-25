@@ -1,7 +1,9 @@
 import React from 'react'
 import {Link} from"react-router-dom"
 
+
 export default function Header() {
+    
   return (
     <>
       <nav className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
@@ -23,11 +25,22 @@ export default function Header() {
             <li><Link className="nav-link" to="/services">Services</Link></li>
             <li><Link className="nav-link" to="/blog">Blog</Link></li>
             <li><Link className="nav-link" to="/contact">Contact us</Link></li>
+            <li><Link className="nav-link" to="/admin-home">Admin</Link></li>
         </ul>
 
-        <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-            <li><Link className="nav-link" to="#"><img src="./public/assets/images/user.svg"/></Link></li>
-            <li><Link className="nav-link" to="cart"><img src="./public/assets/images/cart.svg"/></Link></li>
+    <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+    <div className="dropdown">
+  <button className="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Amish khan
+  </button>
+  <ul className="dropdown-menu">
+    <li><a className="dropdown-item" href="#">profile</a></li>
+    <li><a className="dropdown-item" href="#">Cart</a></li>
+    <li><a className="dropdown-item" href="#">logout</a></li>
+  </ul>
+</div>
+           
+            <li><Link className="nav-link" to="/cart"><img src="./public/assets/images/cart.svg"/></Link></li>
         </ul>
     </div>
 </div>
