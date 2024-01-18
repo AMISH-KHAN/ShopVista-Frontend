@@ -1,6 +1,45 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { addNewsletter, getNewsletter } from '../Store/ActionCreators/NewsletterActioncreator'
+import { useDispatch, useSelector } from 'react-redux'
 export default function Footer() {
+	let [data, setData] = useState([])
+	let [msg, setmsg] = useState("")
+	let [show, setshow] = useState(false)
+	let newsletters=useSelector((state)=>state.NewsletterStateData)
+	let dispatch = useDispatch()
+	function getData(e) {
+		let name = e.target.name
+		let value = e.target.value
+		setData((old)=>{
+			return {
+				...old,
+				[name]:value
+			}
+		})
+	}
+	async function postData(e) {
+		e.preventDefault()
+		console.log(newsletters)
+		var d =await newsletters.find((item) => item.email === data.email)
+		console.log(d)
+		if (d) {
+			setshow(true)
+			setmsg("Your Email Id is Already Subscribed!!!!")
+		}
+		else {
+			let item = {
+				name: data.name,
+				email:data.email
+			}
+			
+			await dispatch(addNewsletter(item))
+			setshow(true)
+			setmsg("Thanks to Subscibe our Newsletter Service!!!")
+		}
+	}
+	useEffect(()=>{
+        dispatch(getNewsletter())
+    },[newsletters.length])
   return (
     <>
       <footer className="footer-section">
@@ -10,17 +49,20 @@ export default function Footer() {
 				<div className="row">
 					<div className="col-lg-8">
 						<div className="subscription-form">
-							<h3 className="d-flex align-items-center"><span className="me-1"><img src="./public/assets/images/envelope-outline.svg" alt="Image" className="img-fluid"/></span><span>Subscribe to Newsletter</span></h3>
-
-							<form action="#" className="row g-3">
+							<h3 className="d-flex align-items-center"><span className="me-1"><img src="/public/assets/images/envelope-outline.svg" alt="Image" className="img-fluid"/></span><span>Subscribe to Newsletter</span></h3>
+							  {show ? <div className="alert alert-success alert-dismissible fade show" role="alert">
+								  {msg}
+  <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>{setshow(false)}}></button>
+</div>:""}
+							<form  className="row g-3">
 								<div className="col-auto">
-									<input type="text" className="form-control" placeholder="Enter your name"/>
+									<input type="text" className="form-control" name='name' onChange={getData} placeholder="Enter your name"/>
 								</div>
 								<div className="col-auto">
-									<input type="email" className="form-control" placeholder="Enter your email"/>
+									<input type="email" className="form-control" name='email' onChange={getData} placeholder="Enter your email"/>
 								</div>
 								<div className="col-auto">
-									<button className="btn btn-primary">
+									<button className="btn btn-primary" onClick={postData}>
 										<span className="fa fa-paper-plane"></span>
 									</button>
 								</div>
@@ -32,7 +74,7 @@ export default function Footer() {
 
 				<div className="row g-5 mb-5">
 					<div className="col-lg-4">
-						<div className="mb-4 footer-logo-wrap"><a href="#" className="footer-logo">Furni<span>.</span></a></div>
+						<div className="mb-4 footer-logo-wrap"><a href="#" className="footer-logo">ShopVista<span>.</span></a></div>
 						<p className="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
 
 						<ul className="list-unstyled custom-social">
@@ -71,13 +113,7 @@ export default function Footer() {
 								</ul>
 							</div>
 
-							<div className="col-6 col-sm-6 col-md-3">
-								<ul className="list-unstyled">
-									<li><a href="#">Nordic Chair</a></li>
-									<li><a href="#">Kruzo Aero</a></li>
-									<li><a href="#">Ergonomic Chair</a></li>
-								</ul>
-							</div>
+							
 						</div>
 					</div>
 

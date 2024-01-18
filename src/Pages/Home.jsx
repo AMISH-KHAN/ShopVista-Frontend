@@ -21,7 +21,7 @@ export default function Home() {
 							<div className="intro-excerpt">
 								<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
 								<p className="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-								<p><Link to="/shop" className="btn btn-secondary me-2">Shop Now</Link><Link href="#" className="btn btn-white-outline">Explore</Link></p>
+								<p><Link to="/shop" className="btn btn-secondary me-2">Shop Now</Link><Link to="#" className="btn btn-white-outline">Explore</Link></p>
 							</div>
 						</div>
 						<div className="col-lg-7">
@@ -47,6 +47,7 @@ export default function Home() {
 							  return (
 								  
 								  <div key={index} className="col-12 col-md-4 col-lg-3 mb-5 mb-md-2">
+									<Link to={`/singleproduct/${item.id}`}>
 									  <div className="card" >
   <img src={`./assets/productimages/${item.pic1}`} className="card-img-top img-fluid product-thumbnail" style={{height:"226px"}}/>
   <div className="card-body">
@@ -58,6 +59,7 @@ export default function Home() {
     <Link to="/cart" className="btn btn-primary mt-2 w-100">add to cart</Link>
   </div>
 </div>
+</Link>
 								{/* <Link className="product-item" to="/cart">
 									  <img src={`./assets/productimages/${item.pic1}`} className="img-fluid product-thumbnail" height={"200px"} width={"200px"}/>
 									  <h3 className="product-title">{ item.name}</h3>

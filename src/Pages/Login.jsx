@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { getUser } from '../Store/ActionCreators/UserActioncreator'
 
 export default function Login() {
+  let dispatch = useDispatch()
+  let users=useSelector((state)=>state.UserStateData)
+  const navigate=useNavigate()
   let [data, setdata] = useState({
     email: "",
     password:""
   })
-
+    
   function getData(e) {
       let value=e.target.value
     let name = e.target.name
@@ -19,12 +24,25 @@ export default function Login() {
     }
   function postData(e) { 
     e.preventDefault()
-    alert(`
-    email:${data.email},
-    password:${data.password}
-    `)
-    }
+    let item=users.find((item)=>item.email===data.email)
     
+    if (item.email && item.password===data.password) {
+      localStorage.setItem("login",true)
+      localStorage.setItem("name",item.name)
+      localStorage.setItem("username",item.username)
+      localStorage.setItem("userid",item.id)
+      localStorage.setItem("role",item.role)
+      navigate("/home")
+      // console.log("found")
+    }
+    else {
+      alert("incorrect email or password")
+    }
+  }
+  
+  useEffect(() => {
+    dispatch(getUser())
+    },[])
   return (
       <>
           <div className='logincontainer d-flex justify-content-center m-5 ' >

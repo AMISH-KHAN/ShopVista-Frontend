@@ -1,6 +1,42 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { addContact } from '../Store/ActionCreators/ContactActioncreator'
+import { useDispatch, useSelector } from 'react-redux'
 export default function Contactus() {
+  var [data, setdata] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  })
+  let [msg,setmsg]=useState(false)
+  let contacts = useSelector((state) => state.NewsletterStateData)
+  let dispatch=useDispatch()
+  async function getData(e) {
+    let name = e.target.name
+    let value = e.target.value
+    
+    setdata((old) => {
+      return {
+        ...old,
+        [name]:value
+      }
+    })
+  }
+  async function postData(e) {
+    e.preventDefault()
+        var item = {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            subject: data.subject,
+            message: data.message,
+            status: "Active",
+            time: new Date()
+    }
+    dispatch(addContact(item))
+    setmsg(true)
+  }
   return (
     <>
 			 
@@ -74,32 +110,36 @@ export default function Contactus() {
                 </div>
               </div>
 
+                      {msg?<div className="alert alert-success alert-dismissible fade show" role="alert">
+                      Thanks to Share Your Query With US!!! Our Team Will Contact You Soon!!!
+  <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"  onClick={()=>{setmsg(false)}}></button>
+</div>:""}
               <form>
                 <div className="row">
-                  <div className="col-6">
+                    <div className="col-6">
                     <div className="form-group">
-                      <label className="text-black" for="fname">First name</label>
-                      <input type="text" className="form-control" id="fname"/>
+                      <label className="text-black" for="name">Name</label>
+                      <input type="text" className="form-control" onChange={getData} name="name" id="name"/>
                     </div>
                   </div>
                   <div className="col-6">
                     <div className="form-group">
-                      <label className="text-black" for="lname">Last name</label>
-                      <input type="text" className="form-control" id="lname"/>
+                      <label className="text-black" for="phone">Phone</label>
+                      <input type="text" className="form-control" onChange={getData} id="phone"/>
                     </div>
                   </div>
                 </div>
                 <div className="form-group">
                   <label className="text-black" for="email">Email address</label>
-                  <input type="email" className="form-control" id="email"/>
+                  <input type="email" className="form-control" onChange={getData} name='email' id="email"/>
                 </div>
 
                 <div className="form-group mb-5">
                   <label className="text-black" for="message">Message</label>
-                  <textarea name="" className="form-control" id="message" cols="30" rows="5"></textarea>
+                  <textarea  className="form-control" onChange={getData} name="message" id="message" cols="30" rows="5"></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary-hover-outline">Send Message</button>
+                <button type="submit" className="btn btn-primary-hover-outline" onClick={postData}>Send Message</button>
               </form>
 
             </div>

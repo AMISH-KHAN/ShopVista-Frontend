@@ -25,6 +25,11 @@ import AdminUpdateBrand from './Admin/AdminUpdateBrand'
 import Adminproduct from './Admin/Adminproduct'
 import Adminaddproduct from './Admin/Adminaddproduct'
 import AdminUpdateProduct from './Admin/AdminUpdateProduct'
+import SingleProduct from './Pages/SingleProduct'
+import Profile from './Pages/profile'
+import UpdateProfile from './Pages/UpdateProfile'
+import Checkout from './Pages/Checkout'
+import Confirmation from './Pages/Confirmation'
 
 
 function App() {
@@ -35,6 +40,7 @@ function App() {
       <Header />
         <Routes>
           <Route path='/' element={ <Home />} />
+          <Route path='/home' element={ <Home />} />
           <Route path='/shop' element={ <Shop />} />
           <Route path='/about' element={ <Aboutus />} />
           <Route path='/services' element={ <Services />} />
@@ -42,7 +48,13 @@ function App() {
           <Route path='/contact' element={ <Contactus/>} />
           <Route path='/cart' element={ <Cart/>} />
           <Route path='/login' element={ <Login/>} />
-          <Route path='/signup' element={ <Signup/>} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/singleproduct/:id' element={<SingleProduct />} />
+          <Route path='/profile' element={<Profile/>} />
+          <Route path='/updateprofile/:id' element={<UpdateProfile/>} />
+          <Route path='/checkout' element={<Checkout/>} />
+          <Route path='/confirmation' element={<Confirmation/>} />
+          
           <Route path='/admin-home' element={<Adminhome />} />
           
           <Route path='/admin-user' element={<Adminuser />} />

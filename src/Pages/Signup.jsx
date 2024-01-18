@@ -1,9 +1,15 @@
 import { Key } from '@mui/icons-material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { addUser, getUser } from '../Store/ActionCreators/UserActioncreator'
 
 export default function Signup() {
+  let dispatch = useDispatch()
   let [data, setdata] = useState({})
-  
+  let user=useSelector((state)=>state.UserStateData)
+  let navigate = useNavigate()
+  localStorage.setItem("name",data.name)
   function getData(e) {
     let name=e.target.name
     let value = e.target.value
@@ -16,29 +22,41 @@ export default function Signup() {
   }
   function postData(e) {
     e.preventDefault()
-    if (data.password === data.cpassword) {
-
-      localStorage.setItem(
-        "login", true
-        
-  )
-      alert(
-        `
-        name:${data.name},
-        userName:${data.userName},
-        email:${data.email},
-        phone:${data.phone},
-        password:${data.password},
-        cpassword:${data.cpassword},
-  
-        `
-      )
+    let founduser = user.find((item) => item.userName === data.userName || item.email=== data.email)
+    if (founduser) {
+      alert("user already exists")
     }
-    else {
-      alert("password does not match")
+    else{
+      
+      if (data.password === data.cpassword) {
+        let value = {
+          name:data.name,
+          username:data.username,
+          email:data.email,
+          phone:data.phone,
+          password:data.password,
+          addressline1:"",
+          addressline2:"",
+          addressline3:"",
+          pin:"",
+          city:"",
+          state:"",
+          pic:"",
+          role:"User",
+        }
+        dispatch(addUser(value))
+        
+          navigate("/login")
+      }
+      else {
+        alert("password does not match")
+      }
     }
 
   }
+  useEffect(() => {
+    dispatch(getUser())
+  },[])
   return (
     <>
           <div className='signupcontainer  '>

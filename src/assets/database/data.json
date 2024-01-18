@@ -7,10 +7,6 @@
     {
       "id": 2,
       "name": "Female"
-    },
-    {
-      "id": 3,
-      "name": "Kids"
     }
   ],
   "subcategory": [
@@ -55,6 +51,10 @@
     {
       "id": 6,
       "name": "Tommy Hilfiger"
+    },
+    {
+      "name": "Puma",
+      "id": 7
     }
   ],
   "product": [
@@ -272,36 +272,294 @@
       "pic3": "p1.jpg",
       "pic4": "p15.jpg",
       "id": 11
+    },
+    {
+      "name": "kids mufti tshirt",
+      "maincategory": "Kids",
+      "subcategory": "Tshirt",
+      "brand": "Mufti",
+      "stock": "in Stock",
+      "color": "black",
+      "size": "22",
+      "baseprice": 2000,
+      "discount": 20,
+      "finalprice": 1600,
+      "discription": "good for your young ones",
+      "pic1": "p42.jpg",
+      "pic2": "p66.jpg",
+      "pic3": "p65.jpg",
+      "pic4": "p65.jpg",
+      "id": 12
     }
   ],
   "user": [
     {
       "id": 0
+    },
+    {
+      "id": 1,
+      "name": "Amish",
+      "username": "Ak",
+      "email": "123@gmail.com",
+      "phone": "9873848046",
+      "password": "Amishkhan",
+      "addressline1": "29/33 Katra Hajjam",
+      "addressline2": "Mal Ka Bazar",
+      "addressline3": "Nai basti",
+      "pin": "282002",
+      "city": "Agra",
+      "state": "Uttar Pradesh",
+      "pic": "person_2.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Kan",
+      "username": "kan k",
+      "email": "kan123@gmail.com",
+      "phone": "1212354489",
+      "password": "Kan1234",
+      "addressline1": "afdfa",
+      "addressline2": "adfa",
+      "addressline3": "sdfsfd",
+      "pin": "fe1",
+      "city": "fsfgsfs",
+      "state": "gdfgdf",
+      "pic": "bg_1.jpg"
     }
   ],
   "cart": [
     {
-      "id": 0
+      "productid": 1,
+      "userid": "1",
+      "name": "Male Jeans Slim Fit Mufti",
+      "color": "Black",
+      "price": 2508,
+      "qty": 4,
+      "total": 10032,
+      "pic": "p5.jpg",
+      "id": 1
+    },
+    {
+      "productid": 6,
+      "userid": "1",
+      "name": "Man Tshirt Tommy Hilfiger",
+      "color": "Black",
+      "price": 1560,
+      "qty": 1,
+      "total": 1560,
+      "pic": "p3.jpg",
+      "id": 2
     }
   ],
   "wishlist": [
     {
       "id": 0
+    },
+    {
+      "productid": 2,
+      "userid": "2",
+      "name": "Male Jeans Regular Fit",
+      "color": "Blue",
+      "price": 3550,
+      "pic": "p11.jpg",
+      "id": 2
     }
   ],
   "checkout": [
     {
       "id": 0
+    },
+    {
+      "userid": "2",
+      "paymentmode": "COD",
+      "orderstatus": "Order Placed",
+      "paymentstatus": "Pending",
+      "time": "2024-01-17T19:08:42.255Z",
+      "totalAmount": 4068,
+      "shippingAmount": 0,
+      "finalAmount": 4068,
+      "products": [
+        {
+          "productid": 1,
+          "userid": "2",
+          "name": "Male Jeans Slim Fit Mufti",
+          "color": "Black",
+          "price": 2508,
+          "qty": 1,
+          "total": 2508,
+          "pic": "p5.jpg",
+          "id": 3
+        },
+        {
+          "productid": 6,
+          "userid": "2",
+          "name": "Man Tshirt Tommy Hilfiger",
+          "color": "Black",
+          "price": 1560,
+          "qty": 1,
+          "total": 1560,
+          "pic": "p3.jpg",
+          "id": 4
+        }
+      ],
+      "id": 1
+    },
+    {
+      "userid": "2",
+      "paymentmode": "COD",
+      "orderstatus": "Order Placed",
+      "paymentstatus": "Pending",
+      "time": "2024-01-17T19:52:56.646Z",
+      "totalAmount": 6576,
+      "shippingAmount": 0,
+      "finalAmount": 6576,
+      "products": [
+        {
+          "productid": 1,
+          "userid": "2",
+          "name": "Male Jeans Slim Fit Mufti",
+          "color": "Black",
+          "price": 2508,
+          "qty": 1,
+          "total": 2508,
+          "pic": "p5.jpg",
+          "id": 3
+        },
+        {
+          "productid": 6,
+          "userid": "2",
+          "name": "Man Tshirt Tommy Hilfiger",
+          "color": "Black",
+          "price": 1560,
+          "qty": 1,
+          "total": 1560,
+          "pic": "p3.jpg",
+          "id": 4
+        },
+        {
+          "productid": 5,
+          "userid": "2",
+          "name": "Male Jeans Adidas Slim Fit",
+          "color": "Blue",
+          "price": 2508,
+          "qty": 1,
+          "total": 2508,
+          "pic": "p49.jpg",
+          "id": 5
+        }
+      ],
+      "id": 2
+    },
+    {
+      "userid": "2",
+      "paymentmode": "COD",
+      "orderstatus": "Order Placed",
+      "paymentstatus": "Pending",
+      "time": "2024-01-17T19:53:23.790Z",
+      "totalAmount": 6576,
+      "shippingAmount": 0,
+      "finalAmount": 6576,
+      "products": [
+        {
+          "productid": 1,
+          "userid": "2",
+          "name": "Male Jeans Slim Fit Mufti",
+          "color": "Black",
+          "price": 2508,
+          "qty": 1,
+          "total": 2508,
+          "pic": "p5.jpg",
+          "id": 3
+        },
+        {
+          "productid": 6,
+          "userid": "2",
+          "name": "Man Tshirt Tommy Hilfiger",
+          "color": "Black",
+          "price": 1560,
+          "qty": 1,
+          "total": 1560,
+          "pic": "p3.jpg",
+          "id": 4
+        },
+        {
+          "productid": 5,
+          "userid": "2",
+          "name": "Male Jeans Adidas Slim Fit",
+          "color": "Blue",
+          "price": 2508,
+          "qty": 1,
+          "total": 2508,
+          "pic": "p49.jpg",
+          "id": 5
+        }
+      ],
+      "id": 3
     }
   ],
   "contact": [
     {
       "id": 0
+    },
+    {
+      "name": "female",
+      "email": "yawekoc575@kaudat.com",
+      "phone": "",
+      "subject": "",
+      "message": "nhhkjbkjb",
+      "status": "Active",
+      "time": "2024-01-18T02:01:12.211Z",
+      "id": 1
+    },
+    {
+      "name": "amish",
+      "email": "amishkhan2928@gmail.com",
+      "phone": "",
+      "subject": "",
+      "message": "qwqsxwx",
+      "status": "Active",
+      "time": "2024-01-18T02:02:20.038Z",
+      "id": 2
+    },
+    {
+      "name": "khanamish8923@gmail",
+      "email": "khanamish8923@gmail.com",
+      "phone": "",
+      "subject": "",
+      "message": "asdfghjk",
+      "status": "Active",
+      "time": "2024-01-18T02:36:49.587Z",
+      "id": 3
+    },
+    {
+      "name": "khanamish8923@gmail",
+      "email": "khanamish8923@gmail.com",
+      "phone": "",
+      "subject": "",
+      "message": "asdfghjk",
+      "status": "Active",
+      "time": "2024-01-18T02:36:53.350Z",
+      "id": 4
     }
   ],
-  "newslatter": [
+  "newsletter": [
     {
       "id": 0
+    },
+    {
+      "name": "amish",
+      "email": "yawekoc575@kaudat.com",
+      "id": 1
+    },
+    {
+      "name": "female",
+      "email": "amishkhan2928@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "female",
+      "email": "wexilo3194@tsderp.com",
+      "id": 3
     }
   ]
 }

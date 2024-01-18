@@ -1,6 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteCart, getCart, updateCart } from '../Store/ActionCreators/CartActioncreator'
+import { data } from 'autoprefixer'
+import { useNavigate } from 'react-router'
+
 
 export default function Cart() {
+  let carts = useSelector((state) => state.CartStateData)
+  let [cart, setcart] = useState([])
+  let [total, settotal] = useState(0)
+  let [shipping,setshipping]=useState(0)
+  let [final,setfinal]=useState(0)
+  let dispatch = useDispatch()
+  let navigate=useNavigate()
+
+  async function getAPIData() {
+   await dispatch(getCart())
+    let data = carts.filter((item) => item.userid === localStorage.getItem("userid"))
+    // console.log(carts)
+    let newtotal = data.reduce((acc, item) => acc + item.total, 0)
+    let newshipping = total > 0 && total < 1000 ? 150 : 0
+    console.log(newshipping)
+    settotal(newtotal)
+    setshipping(newshipping)
+    setfinal(newshipping+newtotal)
+    setcart(data)
+    console.log("carts",data);
+  }
+  function updateqty(result, id) {
+    var item = cart.find((item) => item.id === id)
+    if (result === "dec" && item.qty == 1) {
+      return
+    }
+        else if (result === "dec") {
+            item.qty = item.qty - 1
+            item.total = item.total - item.price
+        }
+        else {
+            item.qty = item.qty + 1
+            item.total = item.total + item.price
+        }
+        dispatch(updateCart(item))
+      
+  }
+ async function removeitem(id) {
+    await dispatch(deleteCart({ id: id }))
+    // getAPIData()
+  }
+ 
+  useEffect(() => {
+    getAPIData()
+
+  },[carts.length])
   return (
     <>
         <div className="hero">
@@ -36,55 +87,39 @@ export default function Cart() {
                           <th className="product-remove">Remove</th>
                         </tr>
                       </thead>
-                      <tbody>
+                    {
+                      cart.map((item, index) => {
+                        return (
+                          <tbody key={index}>
                         <tr>
                           <td className="product-thumbnail">
-                            <img src="./assets/images/product-1.png" alt="Image" className="img-fluid"/>
+                                <img src={`./assets/productimages/${item.pic}`} alt="Image" className="img-fluid"/>
                           </td>
                           <td className="product-name">
-                            <h2 className="h5 text-black">Product 1</h2>
+                                <h2 className="h5 text-black">{item.name }</h2>
                           </td>
-                          <td>$49.00</td>
+                              <td>{item.price }</td>
                           <td>
-                            <div className="input-group mb-3 d-flex align-items-center quantity-container" style={{"max-width": "120px"}}>
+                            <div className="input-group mb-3 d-flex align-items-center quantity-container" style={{"maxWidth": "120px"}}>
                               <div className="input-group-prepend">
-                                <button className="btn btn-outline-black decrease" type="button">&minus;</button>
+                                <button className="btn btn-outline-black decrease" type="button" onClick={()=>{updateqty("dec",item.id)}}>&minus;</button>
                               </div>
-                              <input type="text" className="form-control text-center quantity-amount"  placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1"/>
+                              <input type="text" className="form-control text-center quantity-amount"  placeholder="" aria-label="Example text with button addon" value={item.qty} onChange={(e)=>updateqty(e.target.value)} aria-describedby="button-addon1"/>
                               <div className="input-group-append">
-                                <button className="btn btn-outline-black increase" type="button">&plus;</button>
+                                <button className="btn btn-outline-black increase" type="button" onClick={()=>updateqty("inc",item.id)}>+</button>
                               </div>
                             </div>
         
                           </td>
-                          <td>$49.00</td>
-                          <td><a href="#" className="btn btn-black btn-sm">X</a></td>
+                              <td>{item.price*item.qty }</td>
+                              <td><button onClick={() =>removeitem(item.id)} className="btn btn-black btn-sm">X</button></td>
                         </tr>
         
-                        <tr>
-                          <td className="product-thumbnail">
-                            <img src="./assets/images/product-2.png" alt="Image" className="img-fluid"/>
-                          </td>
-                          <td className="product-name">
-                            <h2 className="h5 text-black">Product 2</h2>
-                          </td>
-                          <td>$49.00</td>
-                          <td>
-                            <div className="input-group mb-3 d-flex align-items-center quantity-container" style={{"max-width": "120px"}}>
-                              <div className="input-group-prepend">
-                                <button className="btn btn-outline-black decrease" type="button">&minus;</button>
-                              </div>
-                              <input type="text" className="form-control text-center quantity-amount"  placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1"/>
-                              <div className="input-group-append">
-                                <button className="btn btn-outline-black increase" type="button">&plus;</button>
-                              </div>
-                            </div>
-        
-                          </td>
-                          <td>$49.00</td>
-                          <td><a href="#" className="btn btn-black btn-sm">X</a></td>
-                        </tr>
+                        
                       </tbody>
+                        )
+                      })    
+                    }
                     </table>
                   </div>
                 </form>
@@ -123,24 +158,32 @@ export default function Cart() {
                       </div>
                       <div className="row mb-3">
                         <div className="col-md-6">
-                          <span className="text-black">Subtotal</span>
+                          <span className="text-black">total</span>
                         </div>
                         <div className="col-md-6 text-right">
-                          <strong className="text-black">$230.00</strong>
+                      <strong className="text-black">{ total}</strong>
                         </div>
                       </div>
                       <div className="row mb-5">
                         <div className="col-md-6">
-                          <span className="text-black">Total</span>
+                          <span className="text-black">Shipping</span>
                         </div>
                         <div className="col-md-6 text-right">
-                          <strong className="text-black">$230.00</strong>
+                      <strong className="text-black">{ shipping}</strong>
+                        </div>
+                      </div>
+                      <div className="row mb-5">
+                        <div className="col-md-6">
+                          <span className="text-black">Final</span>
+                        </div>
+                        <div className="col-md-6 text-right">
+                      <strong className="text-black">{ final}</strong>
                         </div>
                       </div>
         
                       <div className="row">
                         <div className="col-md-12">
-                          <button className="btn btn-black btn-lg py-3 btn-block">Proceed To Checkout</button>
+                      <button className="btn btn-black btn-lg py-3 btn-block" onClick={() => { navigate("/checkout")}} >Proceed To Checkout</button>
                         </div>
                       </div>
                     </div>

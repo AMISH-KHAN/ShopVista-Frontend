@@ -1,15 +1,19 @@
 import React from 'react'
-import {Link} from"react-router-dom"
+import {Link, useNavigate} from"react-router-dom"
 
 
 export default function Header() {
-    
+  let navigate=useNavigate()
+  function logout() {
+    localStorage.clear()
+      navigate("/login")
+    }
   return (
     <>
       <nav className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
 <div className="container">
-    <Link className="navbar-brand" to="/">Furni<span>.</span></Link>
+    <Link className="navbar-brand" to="/">ShopVista<span>.</span></Link>
 
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
@@ -29,18 +33,19 @@ export default function Header() {
         </ul>
 
     <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-    <div className="dropdown">
-  <button className="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Amish khan
-  </button>
-  <ul className="dropdown-menu">
-    <li><a className="dropdown-item" href="#">profile</a></li>
-    <li><a className="dropdown-item" href="#">Cart</a></li>
-    <li><a className="dropdown-item" href="#">logout</a></li>
-  </ul>
-</div>
-           
-            <li><Link className="nav-link" to="/cart"><img src="./public/assets/images/cart.svg"/></Link></li>
+              {localStorage.getItem("name") ?
+              <div className="dropdown">
+                <button className="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {localStorage.getItem("name")}
+                </button>
+                <ul className="dropdown-menu">
+                  <li><Link className="dropdown-item" to="/profile">profile</Link></li>
+                  <li><Link className="dropdown-item" to="/cart">Cart</Link></li>
+                  <li><Link className="dropdown-item" onClick={logout}>logout</Link></li>
+                </ul>
+              </div>:<li className="nav-item"><Link to="/login" className="nav-link">Login</Link></li>
+}
+            <li><Link className="nav-link" to="/cart"><img src="/public/assets/images/cart.svg"/></Link></li>
         </ul>
     </div>
 </div>

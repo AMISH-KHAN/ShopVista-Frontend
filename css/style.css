@@ -728,3 +728,31 @@ textarea {
   flex: 1 1 auto;
   padding: 1rem 0rem;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.plus,.minus{
+  background: none;
+    border: 1px solid gray;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    height: 38px;
+    width: 38px;
+}
+.quantity {
+  width: 40px;
+  
+  padding: 0px 10px;
+}
+input.quantity {
+  width: 42px;
+  height: 38px;
+}
+.dropdown-item:active{
+  background-color: #222222;
+}
