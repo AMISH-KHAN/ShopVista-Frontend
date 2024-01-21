@@ -1,41 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Leftnav from './Leftnav'
 import { DataGrid } from '@mui/x-data-grid';
-
-const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+import { getUser } from '../Store/ActionCreators/UserActioncreator';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Adminuser() {
+  let [data, setdata] = useState([])
+  let users = useSelector((state) => state.UserStateData)
+  let dispatch=useDispatch()
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'name', headerName: ' name', width: 130 },
+    { field: 'username', headerName: 'User name', width: 130 },
+    { field: 'email', headerName: 'Email', width: 200 },
+    {field: 'phone',headerName: 'Phone',width: 140},
+    {field: 'addressline1',headerName: 'Addressline1',width: 240},
+    {field: 'addressline2',headerName: 'Addressline2',width: 240},
+    {field: 'addressline3',headerName: 'Addressline3',width: 240},
+    {field: 'pin',headerName: 'Pin',width: 90},
+    {field: 'city',headerName: 'city',width: 90},
+    {field: 'state',headerName: 'State',width: 90},
+    
+  ];
+  
+  let rows = [];
+  if (Array.isArray(users)) {
+    // console.log(users)
+    for (let item of users) {
+      rows.push(item)
+    }
+  }
+  async function getAPIData() {
+     await dispatch(getUser())
+    console.log(users)
+  }
+  useEffect(() => {
+  getAPIData()
+  },[])
   return (
     <>
       <div className="row my-4 ">

@@ -5,8 +5,8 @@ import {Link, useNavigate} from"react-router-dom"
 export default function Header() {
   let navigate=useNavigate()
   function logout() {
+    navigate("/login")
     localStorage.clear()
-      navigate("/login")
     }
   return (
     <>

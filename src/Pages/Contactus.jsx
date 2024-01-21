@@ -29,7 +29,6 @@ export default function Contactus() {
             name: data.name,
             email: data.email,
             phone: data.phone,
-            subject: data.subject,
             message: data.message,
             status: "Active",
             time: new Date()
@@ -125,7 +124,7 @@ export default function Contactus() {
                   <div className="col-6">
                     <div className="form-group">
                       <label className="text-black" for="phone">Phone</label>
-                      <input type="text" className="form-control" onChange={getData} id="phone"/>
+                      <input type="text" className="form-control" onChange={getData} name="phone" id="phone"/>
                     </div>
                   </div>
                 </div>

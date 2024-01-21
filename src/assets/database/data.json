@@ -309,6 +309,7 @@
       "pin": "282002",
       "city": "Agra",
       "state": "Uttar Pradesh",
+      "role": "User",
       "pic": "person_2.jpg"
     },
     {
@@ -324,7 +325,23 @@
       "pin": "fe1",
       "city": "fsfgsfs",
       "state": "gdfgdf",
+      "role": "User",
       "pic": "bg_1.jpg"
+    },
+    {
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "phone": "1212354489",
+      "password": "Admin123",
+      "addressline1": "",
+      "addressline2": "",
+      "addressline3": "",
+      "pin": "",
+      "city": "",
+      "state": "",
+      "pic": "",
+      "role": "Admin",
+      "id": 3
     }
   ],
   "cart": [
@@ -372,8 +389,8 @@
     {
       "userid": "2",
       "paymentmode": "COD",
-      "orderstatus": "Order Placed",
-      "paymentstatus": "Pending",
+      "orderstatus": "Delivered",
+      "paymentstatus": "Done",
       "time": "2024-01-17T19:08:42.255Z",
       "totalAmount": 4068,
       "shippingAmount": 0,
@@ -402,7 +419,8 @@
           "id": 4
         }
       ],
-      "id": 1
+      "id": 1,
+      "status": "done"
     },
     {
       "userid": "2",
@@ -453,8 +471,8 @@
     {
       "userid": "2",
       "paymentmode": "COD",
-      "orderstatus": "Order Placed",
-      "paymentstatus": "Pending",
+      "orderstatus": "Delivered",
+      "paymentstatus": "Done",
       "time": "2024-01-17T19:53:23.790Z",
       "totalAmount": 6576,
       "shippingAmount": 0,
@@ -495,51 +513,62 @@
         }
       ],
       "id": 3
+    },
+    {
+      "userid": "2",
+      "paymentmode": "NetBanking",
+      "orderstatus": "Packed",
+      "paymentstatus": "Pending",
+      "time": "2024-01-19T17:51:50.801Z",
+      "totalAmount": 15660,
+      "shippingAmount": 0,
+      "finalAmount": 15660,
+      "products": [
+        {
+          "productid": 1,
+          "userid": "2",
+          "name": "Male Jeans Slim Fit Mufti",
+          "color": "Black",
+          "price": 2508,
+          "qty": 3,
+          "total": 7524,
+          "pic": "p5.jpg",
+          "id": 3
+        },
+        {
+          "productid": 9,
+          "userid": "2",
+          "name": "Female Trouser Black",
+          "color": "Black",
+          "price": 2712,
+          "qty": 3,
+          "total": 8136,
+          "pic": "p70.jpg",
+          "id": 4
+        }
+      ],
+      "id": 4
     }
   ],
   "contact": [
-    {
-      "id": 0
-    },
-    {
-      "name": "female",
-      "email": "yawekoc575@kaudat.com",
-      "phone": "",
-      "subject": "",
-      "message": "nhhkjbkjb",
-      "status": "Active",
-      "time": "2024-01-18T02:01:12.211Z",
-      "id": 1
-    },
     {
       "name": "amish",
       "email": "amishkhan2928@gmail.com",
       "phone": "",
       "subject": "",
-      "message": "qwqsxwx",
-      "status": "Active",
+      "message": "qwqsxwxasdfghjkkjhgfdsasdfghjklkjhgfdsasdfghjkoiuytrewqwertyuiop;lmnbvcxzxcvjkoiuytrewqascvbnjiytf",
+      "status": "done",
       "time": "2024-01-18T02:02:20.038Z",
       "id": 2
     },
     {
-      "name": "khanamish8923@gmail",
-      "email": "khanamish8923@gmail.com",
-      "phone": "",
-      "subject": "",
-      "message": "asdfghjk",
+      "name": "amis",
+      "email": "amishkhan2928@gmail.com",
+      "phone": "1212354489",
+      "message": "tyin",
       "status": "Active",
-      "time": "2024-01-18T02:36:49.587Z",
-      "id": 3
-    },
-    {
-      "name": "khanamish8923@gmail",
-      "email": "khanamish8923@gmail.com",
-      "phone": "",
-      "subject": "",
-      "message": "asdfghjk",
-      "status": "Active",
-      "time": "2024-01-18T02:36:53.350Z",
-      "id": 4
+      "time": "2024-01-18T18:26:53.553Z",
+      "id": 5
     }
   ],
   "newsletter": [
@@ -560,6 +589,21 @@
       "name": "female",
       "email": "wexilo3194@tsderp.com",
       "id": 3
+    },
+    {
+      "name": "male",
+      "email": "345@gmail.com",
+      "id": 4
+    },
+    {
+      "name": "amish",
+      "email": "khanamish8923@gmail.com",
+      "id": 5
+    },
+    {
+      "name": "kan",
+      "email": "35@gmail.com",
+      "id": 6
     }
   ]
 }

@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Leftnav from './Leftnav'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser } from '../Store/ActionCreators/UserActioncreator'
 
 export default function Adminhome() {
+  let [user, setuser] = useState({})
+  let users = useSelector((state) => state.UserStateData)
+  let dispatch = useDispatch()
+  function getAPIData() {
+    dispatch(getUser())
+    let d = users.find((item) => item.id === Number(localStorage.getItem("userid")) && item.role === "Admin")
+    if (d) {
+      setuser(d)
+    }
+  }
+
+  useEffect(() => {
+    getAPIData()
+  },[])
+
   return (
     <>
       
@@ -22,19 +39,19 @@ export default function Adminhome() {
               <tbody>
                 <tr>
                   <th scope="row">Name</th>
-                  <td>Amish khan</td>
+                      <td>{user.name}</td>
                 </tr>
                 <tr>
                   <th scope="row">User Name</th>
-                  <td>Amishk</td>
+                      <td>{ user.username}</td>
                 </tr>
                 <tr>
                   <th scope="row">Email</th>
-                  <td>Amish333@gmail.com</td>
+                      <td>{ user.email}</td>
                 </tr>
                 <tr>
                       <th scope="row">Phone</th>
-                      <td>129832123</td>
+                      <td>{ user.phone}</td>
                 </tr>
               </tbody>
             </table>

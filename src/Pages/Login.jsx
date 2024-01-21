@@ -26,12 +26,16 @@ export default function Login() {
     e.preventDefault()
     let item=users.find((item)=>item.email===data.email)
     
-    if (item.email && item.password===data.password) {
-      localStorage.setItem("login",true)
-      localStorage.setItem("name",item.name)
-      localStorage.setItem("username",item.username)
-      localStorage.setItem("userid",item.id)
-      localStorage.setItem("role",item.role)
+    if (item.email && item.password === data.password) {
+      localStorage.setItem("login", true)
+      localStorage.setItem("name", item.name)
+      localStorage.setItem("username", item.username)
+      localStorage.setItem("userid", item.id)
+      localStorage.setItem("role", item.role)
+      if(item.role==="Admin"){
+      navigate("/admin-home")
+      }
+    else
       navigate("/home")
       // console.log("found")
     }

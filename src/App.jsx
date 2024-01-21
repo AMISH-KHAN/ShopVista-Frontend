@@ -30,6 +30,11 @@ import Profile from './Pages/profile'
 import UpdateProfile from './Pages/UpdateProfile'
 import Checkout from './Pages/Checkout'
 import Confirmation from './Pages/Confirmation'
+import Admincontact from './Admin/Admincontact'
+import AdminSingleContact from './Admin/AdminSingleContact'
+import Admincheckout from './Admin/Admincheckout'
+import AdminSingleCheckout from './Admin/AdminSingleCheckout'
+import Adminnewsletter from './Admin/Adminnewsletter'
 
 
 function App() {
@@ -73,7 +78,15 @@ function App() {
           
           <Route path='/admin-product' element={ <Adminproduct/>} />
           <Route path='/admin-addproduct' element={ <Adminaddproduct/>} />
-          <Route path='/admin-updateproduct/:id' element={ <AdminUpdateProduct/>} />
+          <Route path='/admin-updateproduct/:id' element={<AdminUpdateProduct />} />
+          
+          <Route path='/admin-contactus' element={ <Admincontact/>} />
+          <Route path='/admin-singlecontact/:id' element={ <AdminSingleContact/>} />
+          
+          <Route path='/admin-checkouts' element={ <Admincheckout/>} />
+          <Route path='/admin-singlecheckout/:id' element={<AdminSingleCheckout />} />
+          
+          <Route path='/admin-newsletter' element={ <Adminnewsletter/>} />
       </Routes>
       
       </BrowserRouter>
