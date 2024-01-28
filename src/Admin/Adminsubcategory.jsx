@@ -46,7 +46,6 @@ delete_forever
   ];
   
   let rows = [];
-  console.log(subcategory)
   if (Array.isArray(subcategory)) {
     
     for (let item of subcategory) {
@@ -54,9 +53,7 @@ delete_forever
       
     }
   }
-  else {
-    console.log("sub category is not an array: ",subcategory)
-  }
+ 
   function getAPIData(){
     dispatch(getSubcategory())
 }

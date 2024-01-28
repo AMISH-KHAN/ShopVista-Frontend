@@ -25,6 +25,7 @@ export default function Login() {
   function postData(e) { 
     e.preventDefault()
     let item=users.find((item)=>item.email===data.email)
+    console.log(users)
     
     if (item.email && item.password === data.password) {
       localStorage.setItem("login", true)

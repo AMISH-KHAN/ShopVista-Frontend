@@ -1,8 +1,12 @@
 // maincategory
+const admintoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjY1MGMzMDllYmE4Yzk1ZjZiMjg2MjJkMSIsIm5hbWUiOiJBZG1pbm5ldyIsInVzZXJuYW1lIjoiQWRtaW5uZXciLCJwYXNzd29yZCI6IiQyYiQxMiR3YjA5dmtIMEkwcG05Mi9Tb2lBQlFPcm4yVTdIMGE0aHJ4Ui81U2trbXNLN3k5SlRlVTNURyIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicGhvbmUiOiI4OTY3NDUzIiwiYWRkcmVzc2xpbmUxIjoiIiwiYWRkcmVzc2xpbmUyIjoiIiwiYWRkcmVzc2xpbmUzIjoiIiwicGluIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwicGljIjoiIiwicm9sZSI6ImFkbWluIiwic3RhdHVzIjoiQWN0aXZlIiwiX192IjowfSwiaWF0IjoxNjk1Mjk3NzgzfQ._gis0JwKxY6lBIZkE5xOlfV14MC9Zb66XOt-CNc_lN0"
+
+const usertoken=`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjY1MGMzMGRjYmE4Yzk1ZjZiMjg2MjJkMyIsIm5hbWUiOiJVc2VybmV3IiwidXNlcm5hbWUiOiJVc2VybmV3IiwicGFzc3dvcmQiOiIkMmIkMTIkejhsQks4dWExemZBSkZBM2JtVlprTzIxWnV2UnR3aVBmSDNGYkloT0hOZnJnbXJJVS5Dem0iLCJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicGhvbmUiOiI4OTY3NDUzIiwiYWRkcmVzc2xpbmUxIjoiIiwiYWRkcmVzc2xpbmUyIjoiIiwiYWRkcmVzc2xpbmUzIjoiIiwicGluIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwicGljIjoiIiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOiJBY3RpdmUiLCJfX3YiOjB9LCJpYXQiOjE2OTUyOTc5MTR9.VvZD7qQokt9p66vqXDzmyCv9NPAStIYVD2FGCvaAK54`
 export async function createMaincategoryApi(data) {
-    var response =await fetch("http://localhost:8000/maincategory", {
+    var response =await fetch("api/maincategory", {
         method: "post",
-        headers:{
+        headers: {
+            'Authorization': `Bearer ${admintoken}`,
         "content-type":"application/json"
         },
         body: JSON.stringify(data)
@@ -12,9 +16,10 @@ export async function createMaincategoryApi(data) {
 }
 
 export async function getMaincategoryApi() {
-    var response =await fetch("http://localhost:8000/maincategory", {
+    var response =await fetch("api/maincategory", {
         method: "get",
-        headers:{
+        headers: {
+            'Authorization': `Bearer ${admintoken}`,
         "content-type":"application/json"
         }
         
@@ -23,9 +28,10 @@ export async function getMaincategoryApi() {
 }
 
 export async function updateMaincategoryApi(data) {
-    var response =await fetch("http://localhost:8000/maincategory/"+data.id, {
+    var response =await fetch("api/maincategory/"+data.id, {
         method: "put",
-        headers:{
+        headers: {
+            'Authorization': `Bearer ${admintoken}`,
         "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -34,9 +40,10 @@ export async function updateMaincategoryApi(data) {
 }
 
 export async function deleteMaincategoryApi(data) {
-    var response =await fetch("http://localhost:8000/maincategory/"+data.id, {
+    var response =await fetch("api/maincategory/"+data.id, {
         method: "delete",
-        headers:{
+        headers: {
+            'Authorization': `Bearer ${admintoken}`,
         "content-type":"application/json"
         }
     })
@@ -44,9 +51,11 @@ export async function deleteMaincategoryApi(data) {
 }
 // subcategory
 export async function createSubcategoryApi(data) {
-    var response =await fetch("http://localhost:8000/subcategory", {
+    var response =await fetch("api/subcategory", {
         method: "post",
-        headers:{
+        headers: {
+            'Authorization': `Bearer ${admintoken}`,
+            
         "content-type":"application/json"
         },
         body: JSON.stringify(data)
@@ -56,7 +65,7 @@ export async function createSubcategoryApi(data) {
 }
 
 export async function getSubcategoryApi() {
-    var response =await fetch("http://localhost:8000/subcategory", {
+    var response =await fetch("api/subcategory", {
         method: "get",
         headers:{
         "content-type":"application/json"
@@ -67,7 +76,7 @@ export async function getSubcategoryApi() {
 }
 
 export async function updateSubcategoryApi(data) {
-    var response =await fetch("http://localhost:8000/subcategory/"+data.id, {
+    var response =await fetch("api/subcategory/"+data.id, {
         method: "put",
         headers:{
         "content-type":"application/json"
@@ -78,7 +87,7 @@ export async function updateSubcategoryApi(data) {
 }
 
 export async function deleteSubcategoryApi(data) {
-    var response =await fetch("http://localhost:8000/subcategory/"+data.id, {
+    var response =await fetch("api/subcategory/"+data.id, {
         method: "delete",
         headers:{
         "content-type":"application/json"
@@ -90,9 +99,10 @@ export async function deleteSubcategoryApi(data) {
 // brands
 
 export async function createBrandApi(data) {
-    let response =await fetch("http://localhost:8000/brand", {
+    let response =await fetch("api/brand", {
         method: "post",
         headers: {
+            'Authorization': `Bearer ${admintoken}`,
             
             "content-type":"application/json"
         },
@@ -103,9 +113,10 @@ export async function createBrandApi(data) {
 }
 
 export async function getBrandApi() {
-    let response =await fetch("http://localhost:8000/brand", {
+    let response =await fetch("api/brand", {
         method: "get",
         headers: {
+            'Authorization': `Bearer ${admintoken}`,
             
             "content-type":"application/json"
         }
@@ -114,9 +125,10 @@ export async function getBrandApi() {
 }
 
 export async function updateBrandApi(data) {
-    let response =await fetch("http://localhost:8000/brand/"+data.id, {
+    let response =await fetch("api/brand/"+data.id, {
         method: "put",
         headers: {
+            'Authorization': `Bearer ${admintoken}`,
             
             "content-type":"application/json"
         },
@@ -126,9 +138,10 @@ export async function updateBrandApi(data) {
 }
 
 export async function deleteBrandApi(data) {
-    let response =await fetch("http://localhost:8000/brand/"+data.id, {
+    let response =await fetch("api/brand/"+data.id, {
         method: "delete",
         headers: {
+            'Authorization': `Bearer ${admintoken}`,
             
             "content-type":"application/json"
         }
@@ -139,9 +152,10 @@ export async function deleteBrandApi(data) {
 // products
 
 export async function createProductApi(data) {
-    let response =await fetch("http://localhost:8000/product", {
+    let response =await fetch("api/product", {
         method: "post",
         headers: {
+            'Authorization': `Bearer ${admintoken}`,
             
             "content-type":"application/json"
         },
@@ -152,7 +166,7 @@ export async function createProductApi(data) {
 }
 
 export async function getProductApi() {
-    let response =await fetch("http://localhost:8000/product", {
+    let response =await fetch("api/product", {
         method: "get",
         headers: {
             
@@ -164,9 +178,10 @@ export async function getProductApi() {
 
 export async function updateProductApi(data) {
     
-    let response =await fetch("http://localhost:8000/product/"+data.id, {
+    let response =await fetch("api/product/"+data.id, {
         method: "put",
         headers: {
+            'Authorization': `Bearer ${admintoken}`,
             
             "content-type":"application/json"
         },
@@ -176,9 +191,10 @@ export async function updateProductApi(data) {
 }
 
 export async function deleteProductApi(data) {
-    let response =await fetch("http://localhost:8000/product/"+data.id, {
+    let response =await fetch("api/product/"+data.id, {
         method: "delete",
         headers: {
+            'Authorization': `Bearer ${admintoken}`,
             
             "content-type":"application/json"
         }
@@ -189,10 +205,9 @@ export async function deleteProductApi(data) {
 // users
 
 export async function createUserApi(data) {
-    let response =await fetch("http://localhost:8000/user", {
+    let response =await fetch("api/user", {
         method: "post",
         headers: {
-            
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -202,10 +217,10 @@ export async function createUserApi(data) {
 }
 
 export async function getUserApi() {
-    let response =await fetch("http://localhost:8000/user", {
+    let response =await fetch("api/user", {
         method: "get",
         headers: {
-            
+            'Authorization': `${admintoken}`,
             "content-type":"application/json"
         }
     })
@@ -214,10 +229,10 @@ export async function getUserApi() {
 
 export async function updateUserApi(data) {
     
-    let response =await fetch("http://localhost:8000/user/"+data.id, {
+    let response =await fetch("api/user/"+data.id, {
         method: "put",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -226,10 +241,10 @@ export async function updateUserApi(data) {
 }
 
 export async function deleteUserApi(data) {
-    let response =await fetch("http://localhost:8000/user/"+data.id, {
+    let response =await fetch("api/user/"+data.id, {
         method: "delete",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         }
     })
@@ -239,10 +254,10 @@ export async function deleteUserApi(data) {
 // carts
 
 export async function createCartApi(data) {
-    let response =await fetch("http://localhost:8000/cart", {
+    let response =await fetch("api/cart", {
         method: "post",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -252,10 +267,10 @@ export async function createCartApi(data) {
 }
 
 export async function getCartApi() {
-    let response =await fetch("http://localhost:8000/cart", {
+    let response =await fetch("api/cart", {
         method: "get",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         }
     })
@@ -264,10 +279,10 @@ export async function getCartApi() {
 
 export async function updateCartApi(data) {
     console.log("service",data)
-    let response =await fetch("http://localhost:8000/cart/"+data.id, {
+    let response =await fetch("api/cart/"+data.id, {
         method: "put",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -276,10 +291,10 @@ export async function updateCartApi(data) {
 }
 
 export async function deleteCartApi(data) {
-    let response =await fetch("http://localhost:8000/cart/"+data.id, {
+    let response =await fetch("api/cart/"+data.id, {
         method: "delete",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         }
     })
@@ -289,10 +304,10 @@ export async function deleteCartApi(data) {
 // wishlists
 
 export async function createWishlistApi(data) {
-    let response =await fetch("http://localhost:8000/wishlist", {
+    let response =await fetch("api/wishlist", {
         method: "post",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -302,10 +317,10 @@ export async function createWishlistApi(data) {
 }
 
 export async function getWishlistApi() {
-    let response =await fetch("http://localhost:8000/wishlist", {
+    let response =await fetch("api/wishlist", {
         method: "get",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         }
     })
@@ -314,10 +329,10 @@ export async function getWishlistApi() {
 
 export async function updateWishlistApi(data) {
     
-    let response =await fetch("http://localhost:8000/wishlist/"+data.id, {
+    let response =await fetch("api/wishlist/"+data.id, {
         method: "put",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -326,10 +341,10 @@ export async function updateWishlistApi(data) {
 }
 
 export async function deleteWishlistApi(data) {
-    let response =await fetch("http://localhost:8000/wishlist/"+data.id, {
+    let response =await fetch("api/wishlist/"+data.id, {
         method: "delete",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         }
     })
@@ -339,10 +354,10 @@ export async function deleteWishlistApi(data) {
 // Checkout
 
 export async function createCheckoutApi(data) {
-    let response =await fetch("http://localhost:8000/checkout", {
+    let response =await fetch("api/checkout", {
         method: "post",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -352,10 +367,10 @@ export async function createCheckoutApi(data) {
 }
 
 export async function getCheckoutApi() {
-    let response =await fetch("http://localhost:8000/checkout", {
+    let response =await fetch("api/checkout", {
         method: "get",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
             "content-type":"application/json"
         }
     })
@@ -364,10 +379,10 @@ export async function getCheckoutApi() {
 
 export async function updateCheckoutApi(data) {
     
-    let response =await fetch("http://localhost:8000/checkout/"+data.id, {
+    let response =await fetch("api/checkout/"+data.id, {
         method: "put",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -376,10 +391,10 @@ export async function updateCheckoutApi(data) {
 }
 
 export async function deleteCheckoutApi(data) {
-    let response =await fetch("http://localhost:8000/checkout/"+data.id, {
+    let response =await fetch("api/checkout/"+data.id, {
         method: "delete",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
             "content-type":"application/json"
         }
     })
@@ -389,9 +404,10 @@ export async function deleteCheckoutApi(data) {
 // Contact
 
 export async function createContactApi(data) {
-    let response =await fetch("http://localhost:8000/contact", {
+    let response =await fetch("api/contact", {
         method: "post",
         headers: {
+            'Authorization': `Bearer ${usertoken}`,
             
             "content-type":"application/json"
         },
@@ -402,10 +418,11 @@ export async function createContactApi(data) {
 }
 
 export async function getContactApi() {
-    let response =await fetch("http://localhost:8000/contact", {
+    let response =await fetch("api/contact", {
         method: "get",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
+
             "content-type":"application/json"
         }
     })
@@ -414,10 +431,11 @@ export async function getContactApi() {
 
 export async function updateContactApi(data) {
     
-    let response =await fetch("http://localhost:8000/contact/"+data.id, {
+    let response =await fetch("api/contact/"+data.id, {
         method: "put",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
+
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -426,10 +444,11 @@ export async function updateContactApi(data) {
 }
 
 export async function deleteContactApi(data) {
-    let response =await fetch("http://localhost:8000/contact/"+data.id, {
+    let response =await fetch("api/contact/"+data.id, {
         method: "delete",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
+
             "content-type":"application/json"
         }
     })
@@ -439,10 +458,11 @@ export async function deleteContactApi(data) {
 // Newsletter
 
 export async function createNewsletterApi(data) {
-    let response =await fetch("http://localhost:8000/newsletter", {
+    let response =await fetch("api/newsletter", {
         method: "post",
         headers: {
-            
+            'Authorization': `Bearer ${usertoken}`,
+
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -452,10 +472,11 @@ export async function createNewsletterApi(data) {
 }
 
 export async function getNewsletterApi() {
-    let response =await fetch("http://localhost:8000/newsletter", {
+    let response =await fetch("api/newsletter", {
         method: "get",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
+
             "content-type":"application/json"
         }
     })
@@ -464,10 +485,11 @@ export async function getNewsletterApi() {
 
 export async function updateNewsletterApi(data) {
     
-    let response =await fetch("http://localhost:8000/newsletter/"+data.id, {
+    let response =await fetch("api/newsletter/"+data.id, {
         method: "put",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
+
             "content-type":"application/json"
         },
         body:JSON.stringify(data)
@@ -476,10 +498,11 @@ export async function updateNewsletterApi(data) {
 }
 
 export async function deleteNewsletterApi(data) {
-    let response =await fetch("http://localhost:8000/newsletter/"+data.id, {
+    let response =await fetch("api/newsletter/"+data.id, {
         method: "delete",
         headers: {
-            
+            'Authorization': `Bearer ${admintoken}`,
+
             "content-type":"application/json"
         }
     })
