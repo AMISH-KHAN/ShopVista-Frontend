@@ -45,7 +45,7 @@ delete_forever
   }
   ];
   
-  let rows = [];
+it   let rows = [];
   if (Array.isArray(subcategory)) {
     
     for (let item of subcategory) {
